@@ -17,3 +17,5 @@ result-*
 !.vscode/settings.json
 # Extension recommendations should be kept in the repo.
 !.vscode/extensions.json
+
+*.vim

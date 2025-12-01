@@ -1,0 +1,143 @@
+{
+  "index": 0,
+  "meta": {
+    "time": "2025-10-12T15:06:52.367521451+00:00"
+  },
+  "patch": [
+    {
+      "op": "add",
+      "path": "",
+      "value": {
+        "_type": "nixopsState",
+        "deployments": {},
+        "resources": {}
+      }
+    }
+  ]
+}
+{
+  "index": 0,
+  "meta": {
+    "time": "2025-10-12T15:06:53.087344208+00:00",
+    "event": "create"
+  },
+  "patch": [
+    {
+      "op": "add",
+      "path": "/resources/kainas_key",
+      "value": {
+        "input_properties": {
+          "labels": null,
+          "name": "jasper@Kainas",
+          "public_key": "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIDWbDBrUe/wJchfeDajmozOIDKrBN2pftsPqGlAFdnrEAAAABHNzaDo= jasper@Kainas",
+          "tf-provider-endpoint": null,
+          "tf-provider-poll_function": null,
+          "tf-provider-poll_interval": null,
+          "tf-provider-token": null
+        },
+        "output_properties": {
+          "fingerprint": "cd:cf:b3:bb:2a:d5:17:23:3e:aa:a0:99:0e:f2:31:5d",
+          "id": "103132288",
+          "labels": {},
+          "name": "jasper@Kainas",
+          "public_key": "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIDWbDBrUe/wJchfeDajmozOIDKrBN2pftsPqGlAFdnrEAAAABHNzaDo= jasper@Kainas"
+        },
+        "type": "hcloud_ssh_key"
+      }
+    }
+  ]
+}
+{
+  "index": 0,
+  "meta": {
+    "time": "2025-10-12T15:07:25.745855956+00:00",
+    "event": "create"
+  },
+  "patch": [
+    {
+      "op": "add",
+      "path": "/resources/testvm",
+      "value": {
+        "input_properties": {
+          "allow_deprecated_images": null,
+          "backups": null,
+          "datacenter": null,
+          "delete_protection": null,
+          "firewall_ids": null,
+          "id": null,
+          "ignore_remote_firewall_ids": null,
+          "image": "debian-11",
+          "iso": null,
+          "keep_disk": null,
+          "labels": null,
+          "location": null,
+          "name": "aoeu",
+          "network": [],
+          "placement_group_id": null,
+          "public_net": [
+            {
+              "ipv4": 0,
+              "ipv4_enabled": false,
+              "ipv6": 0,
+              "ipv6_enabled": true
+            }
+          ],
+          "rebuild_protection": null,
+          "rescue": null,
+          "server_type": "cx22",
+          "shutdown_before_deletion": null,
+          "ssh_keys": [
+            "103132288"
+          ],
+          "tf-provider-endpoint": null,
+          "tf-provider-poll_function": null,
+          "tf-provider-poll_interval": null,
+          "tf-provider-token": null,
+          "timeouts": null,
+          "user_data": "#cloud-config\nruncmd:\n  - curl https://raw.githubusercontent.com/elitak/nixos-infect/master/nixos-infect | PROVIDER=hetznercloud NIX_CHANNEL=nixos-25.05 bash 2>&1 | tee /tmp/infect.log\n"
+        },
+        "output_properties": {
+          "allow_deprecated_images": false,
+          "backup_window": "",
+          "backups": false,
+          "datacenter": "hel1-dc2",
+          "delete_protection": false,
+          "firewall_ids": null,
+          "id": "110636926",
+          "ignore_remote_firewall_ids": false,
+          "image": "debian-11",
+          "ipv4_address": "",
+          "ipv6_address": "2a01:4f9:c012:771a::1",
+          "ipv6_network": "2a01:4f9:c012:771a::/64",
+          "iso": null,
+          "keep_disk": false,
+          "labels": null,
+          "location": "hel1",
+          "name": "aoeu",
+          "network": [],
+          "placement_group_id": 0,
+          "primary_disk_size": 40,
+          "public_net": [
+            {
+              "ipv4": 0,
+              "ipv4_enabled": false,
+              "ipv6": 0,
+              "ipv6_enabled": true
+            }
+          ],
+          "rebuild_protection": false,
+          "rescue": null,
+          "server_type": "cx22",
+          "shutdown_before_deletion": false,
+          "ssh_keys": [
+            "103132288"
+          ],
+          "status": "running",
+          "timeouts": null,
+          "user_data": "#cloud-config\nruncmd:\n  - curl https://raw.githubusercontent.com/elitak/nixos-infect/master/nixos-infect | PROVIDER=hetznercloud NIX_CHANNEL=nixos-25.05 bash 2>&1 | tee /tmp/infect.log\n"
+        },
+        "type": "hcloud_server"
+      }
+    }
+  ]
+}

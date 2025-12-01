@@ -2,6 +2,7 @@ mod apply;
 mod control;
 mod dump_state;
 mod eval_client;
+mod import;
 mod interrupt;
 mod logging;
 mod provider;
@@ -65,6 +66,26 @@ async fn run_args(interrupt_state: &InterruptState, args: Args) -> Result<()> {
                 .await?;
                 logging.tear_down()?;
                 println!("{}", state);
+                Ok(())
+            }
+            State::Import {
+                deployment,
+                resource_provider,
+                resource_name,
+                properties,
+            } => {
+                let mut logging = set_up_logging(interrupt_state, &args)?;
+                let state = import::import_resource(
+                    interrupt_state,
+                    &args.options,
+                    deployment,
+                    resource_provider,
+                    resource_name,
+                    properties,
+                )
+                .await;
+                logging.tear_down()?;
+                println!("{:?}", state);
                 Ok(())
             }
         },
@@ -252,6 +273,18 @@ enum State {
         #[arg(short, long, default_value = "default")]
         deployment: String,
     },
+    /// Import an existing resource
+    Import {
+        /// Resource provider
+        resource_provider: String,
+        /// Name of resource to import
+        resource_name: String,
+        /// Properties of resource to import
+        properties: String,
+        /// Deployment name
+        #[arg(short, long, default_value = "default")]
+        deployment: String,
+    },
 }
 
 #[derive(Subcommand, Debug)]
@@ -267,6 +300,10 @@ enum Commands {
     /// Commands that operate on state
     #[command(subcommand)]
     State(State),
+
+    /// Import the current state of the resource
+    //#[command()]
+    //Import(import::Args),
 
     /// Generate markdown documentation for nixops4-resource-runner
     #[command(hide = true)]
